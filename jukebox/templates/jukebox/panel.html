@@ -1,0 +1,9 @@
+<h1>Jukebox Control Panel</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'play' %}" method="post">
+{% csrf_token %}
+<input type="text" value="Playlist ID" id="listID", name="listID">
+<input type="submit" value="Play" />
+</form>

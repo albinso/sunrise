@@ -32,16 +32,16 @@ class MopidyInstance(subprocess.Popen):
 
 
 class PlayList(models.Model):
-
-    def __init__(self, name):
-        models.Model.__init__(self)
-        self.name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default="")
 
     def load(self):
         command = make_mpc_command(['load', self.get_name()])
         return subprocess.call(command)
 
     def get_name(self):
+        return self.name
+
+    def __unicode__(self):
         return self.name
 
 
