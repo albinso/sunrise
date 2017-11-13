@@ -20,6 +20,6 @@ import jukebox
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^party/', include('jukebox.urls')),
+    url(r'^party/', include('jukebox.urls', namespace="jukebox")),
     url(r'^$', views.index),
 ]

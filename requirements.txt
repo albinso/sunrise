@@ -7,6 +7,5 @@ django-celery==3.2.2
 django-celery-beat==1.1.0
 ephem==3.7.6.0
 -e git+https://github.com/celery/kombu.git@9f2fd403ef9efe8d41265baf0d7218cb6d1f3118#egg=kombu
-pkg-resources==0.0.0
 pytz==2017.3
 vine==1.1.4
