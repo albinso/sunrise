@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jukebox',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
