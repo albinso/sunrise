@@ -8,8 +8,8 @@ import math
 class MpdController:
     def __init__(self, default_volume=100):
         self.vol = default_volume
-        self.process = self.init_mopidy()
-        print(self.process.pid)
+        #self.process = self.init_mopidy()
+        #print(self.process.pid)
         self.wait_for_mopidy_startup()
         self.playing = False
         playlist = random.choice(self.get_playlists())
