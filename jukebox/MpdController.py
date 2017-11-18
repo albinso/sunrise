@@ -6,7 +6,7 @@ import math
 
 
 class MpdController:
-    def __init__(self, default_volume=100):
+    def __init__(self, default_volume=15):
         self.vol = default_volume
         #self.process = self.init_mopidy()
         #print(self.process.pid)
