@@ -2,19 +2,18 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-
-<form action="{% url 'jukebox:play' %}" method="post">
+<form action="{% url 'jukebox:load' %}" method="post">
 {% csrf_token %}
 <input type="text" value="Playlist ID" id="listID", name="listID">
 <input type="submit" value="Load" />
 </form>
 
-<form action="{% url 'pause' %}" method="post">
+<form action="{% url 'jukebox:pause' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Pause" />
 </form>
 
-<form action="{% url 'play' %}" method="post">
+<form action="{% url 'jukebox:play' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Play" />
 </form>

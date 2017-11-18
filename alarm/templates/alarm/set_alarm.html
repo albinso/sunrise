@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'alarm:save_alarm' %}" method="post">
+{% csrf_token %}
+<input type="time" id="time", name="time">
+<input type="submit" value="Load" />
+</form>
+
+</body>
+</html>

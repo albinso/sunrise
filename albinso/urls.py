@@ -17,9 +17,14 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from . import views
 import jukebox
+from jukebox.MpdController import MpdController
+
+jukebox.mpd_instance = MpdController()
+import alarm
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^party/', include('jukebox.urls', namespace="jukebox")),
+    url(r'^alarm/', include('alarm.urls', namespace="alarm")),
     url(r'^$', views.index),
 ]
