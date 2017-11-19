@@ -16,6 +16,7 @@ def get_time_from_request(request):
 
 def save_alarm(request):
     hour, minute = get_time_from_request(request)
+    hour = str((int(hour) - 1) % 24) # Convert to Stockholm time
     schedule, created = CrontabSchedule.objects.get_or_create(hour=hour, minute=minute)
     PeriodicTask.objects.create(crontab=schedule, task='alarm.tasks.alarm', name='Alarm at {0}:{1}'.format(hour, minute))
     return render(request, 'alarm/set_alarm.html')

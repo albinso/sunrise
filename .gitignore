@@ -2,3 +2,4 @@
 .idea
 *.sqlite3
 albinso/settings.py
+albinso/static
