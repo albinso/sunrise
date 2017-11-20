@@ -47,7 +47,7 @@ class MpdController:
     def play(self):
         if self.playing:
             print('Already playing so doing nothing')
-            return 0
+            #return 0
         self.playing = True
         command = self.make_mpc_command(['play'])
         return call(command)
