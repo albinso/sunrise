@@ -41,13 +41,15 @@ class MpdController:
         return self.vol
 
     def load_playlist(self, name):
+        clear_command = self.make_mpc_command(['clear'])
+        call(clear_command)
         command = self.make_mpc_command(['load', name])
         return call(command)
 
     def play(self):
         if self.playing:
             print('Already playing so doing nothing')
-            #return 0
+            return 0
         self.playing = True
         command = self.make_mpc_command(['play'])
         return call(command)
