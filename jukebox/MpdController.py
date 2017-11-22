@@ -13,7 +13,7 @@ class MpdController:
         self.wait_for_mopidy_startup()
         self.playing = False
         playlist = random.choice(self.get_playlists())
-        self.load_playlist(playlist)
+        #self.load_playlist(playlist)
 
     def init_mopidy(self):
         FNULL = open(os.devnull, 'w')
