@@ -1,5 +1,11 @@
 *.pyc
 .idea
+*.xml
+*.iml
+.idea/*
+*.pid
+*.txt
 *.sqlite3
 albinso/settings.py
 albinso/static
+celerybeat-schedule
