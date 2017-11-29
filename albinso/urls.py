@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^party/', include('jukebox.urls', namespace="jukebox")),
     url(r'^alarm/', include('alarm.urls', namespace="alarm")),
-    url(r'^$', views.index),
+    url(r'^$', jukebox.views.panel),
 ]
