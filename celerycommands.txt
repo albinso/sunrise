@@ -1,0 +1,2 @@
+celery -A albinso worker -l info
+celery -A albinso beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
