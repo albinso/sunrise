@@ -1,4 +1,4 @@
-from subprocess import call, Popen, STDOUT, check_output
+from subprocess import call, Popen, STDOUT, PIPE, check_output
 import os
 import time
 import random
@@ -47,9 +47,6 @@ class MpdController:
         return call(command)
 
     def play(self):
-        if self.playing:
-            print('Already playing so doing nothing')
-            return 0
         self.playing = True
         command = self.make_mpc_command(['play'])
         return call(command)
@@ -72,6 +69,22 @@ class MpdController:
         output = str(check_output(command))
         return output.split('\n')
 
+    def search_song(self, songname):
+        command = self.make_mpc_command(['search', 'Artist', songname])
+        search = str(check_output(command)).split('\n')
+        for song in reversed(search):
+            if 'track' in song:
+                command = self.make_mpc_command(['insert', song])
+                call(command)
+        return self.play()
+       
+    def clear(self):
+        command = self.make_mpc_command(['clear'])
+        return call(command)
+
     def make_mpc_command(self, *args):
-        return ['mpc', '-p', '6680'] + args[0]
+        out = ['mpc', '-h', '192.168.0.100'] + args[0]
+	#out = ' '.join(map(str, out))
+	print(out)
+	return out
 

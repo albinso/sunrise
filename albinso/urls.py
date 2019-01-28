@@ -18,7 +18,6 @@ from django.contrib import admin
 from . import views
 import jukebox
 from jukebox.MpdController import MpdController
-
 jukebox.mpd_instance = MpdController()
 import alarm
 

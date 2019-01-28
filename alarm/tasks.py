@@ -7,7 +7,7 @@ from lightconfig import url
 
 @celery_app.task(bind=True)
 def alarm(self):
-	lightemup()
+    lightemup()
     mpd_instance.set_volume(0)
     mpd_instance.pause()
     mpd_instance.play()
@@ -16,5 +16,5 @@ def alarm(self):
         time.sleep(2)
 
 def lightemup():
-	for i in range(1, 6):
-		requests.get(url + "/light/on?id=" + str(i))
+    for i in range(1, 7):
+        requests.get(url + "/light/on?id=" + str(i))

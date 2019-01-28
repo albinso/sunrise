@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from . import mpd_instance
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return HttpResponse("Hello from Partytown!")
@@ -9,11 +10,6 @@ def index(request):
 
 def panel(request):
     return render(request, 'jukebox/panel.html')
-
-
-def load(request):
-    mpd_instance.load_playlist(request.POST['listID'])
-    return HttpResponseRedirect(reverse('jukebox:panel'))
 
 
 def play(request):
@@ -25,3 +21,23 @@ def pause(request):
     mpd_instance.pause()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
+def next(request):
+    mpd_instance.next()
+    return HttpResponseRedirect(reverse('jukebox:panel'))
+
+def prev(request):
+    mpd_instance.prev()
+    return HttpResponseRedirect(reverse('jukebox:panel'))
+
+def set_volume(request):
+    mpd_instance.set_volume(request.GET['volume'])
+    return HttpResponseRedirect(reverse('jukebox:panel'))
+
+def clear(request):
+    mpd_instance.clear()
+    return HttpResponseRedirect(reverse('jukebox:panel'))
+
+@csrf_exempt
+def search(request):
+    mpd_instance.search_song(request.POST['Artist'])
+    return HttpResponseRedirect(reverse('jukebox:panel'))

@@ -1,6 +1,6 @@
 amqp==2.2.2
 anyjson==0.3.3
--e git+https://github.com/celery/billiard.git@7dcbf6125ba60d103571228aec2aa7acb5ce193c#egg=billiard
+#-e git+https://github.com/celery/billiard.git@7dcbf6125ba60d103571228aec2aa7acb5ce193c#egg=billiard
 celery==4.1.0
 Django==1.11.7
 django-celery==3.2.2
