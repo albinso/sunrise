@@ -70,7 +70,7 @@ class MpdController:
         return output.split('\n')
 
     def is_empty(self):
-        playlist = self.get_playlist()
+        playlist = self.get_playlists()
         print(playlist)
         return len(playlist) == 0
 
