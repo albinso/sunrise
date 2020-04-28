@@ -72,7 +72,7 @@ class MpdController:
     def is_empty(self):
         playlist = self.get_playlist()
         print(playlist)
-        return len(playlist) == 0:
+        return len(playlist) == 0
 
     def search_song(self, songname):
         command = self.make_mpc_command(['search', 'Artist', songname])
