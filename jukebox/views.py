@@ -14,7 +14,7 @@ def panel(request):
 
 def play(request):
     if mpd_instance.is_empty():
-        self.search_song("journey")
+        mpd_instance.search_song("journey")
     mpd_instance.play()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
