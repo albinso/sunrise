@@ -80,6 +80,7 @@ class MpdController:
         max_songs = 5
         i = max_songs
         for song in search:
+            print(song)
             if i <= 0:
                 break
             if 'track' in song:
