@@ -72,8 +72,13 @@ class MpdController:
     def search_song(self, songname):
         command = self.make_mpc_command(['search', 'Artist', songname])
         search = str(check_output(command)).split('\n')
-        for song in reversed(search):
+        max_songs = 5
+        i = max_songs
+        for song in search:
+            if i <= 0:
+                break
             if 'track' in song:
+                i -= 1
                 command = self.make_mpc_command(['insert', song])
                 call(command)
         return self.play()

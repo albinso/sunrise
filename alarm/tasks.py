@@ -14,7 +14,12 @@ def alarm(self):
     for i in range(100):
         mpd_instance.raise_volume(1)
         time.sleep(2)
-
+    
 def lightemup():
-    for i in range(1, 7):
-        requests.get(url + "/light/on?id=" + str(i))
+    for brightness in range(1, 256):
+        for i in range(1, 7):
+            requests.get(url + "/light/bright?id={}&brightness={}".format(i, brightness))
+            if brightness == 1:
+                requests.get(url + "/light/on?id={}".format(i))
+                
+        time.sleep(1)
