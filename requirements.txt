@@ -3,7 +3,7 @@ anyjson==0.3.3
 #-e git+https://github.com/celery/billiard.git@7dcbf6125ba60d103571228aec2aa7acb5ce193c#egg=billiard
 celery==4.1.0
 Django==1.11.15
-django-celery==3.2.2
+django-celery
 django-celery-beat==1.1.0
 ephem==3.7.6.0
 -e git+https://github.com/celery/kombu.git@9f2fd403ef9efe8d41265baf0d7218cb6d1f3118#egg=kombu

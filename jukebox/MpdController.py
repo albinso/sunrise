@@ -56,7 +56,7 @@ class MpdController:
         command = self.make_mpc_command(['pause'])
         return call(command)
 
-    def next(self):
+    def __next__(self):
         command = self.make_mpc_command(['next'])
         return call(command)
 
@@ -75,7 +75,10 @@ class MpdController:
 
     def search_song(self, songname):
         command = self.make_mpc_command(['search', 'Artist', songname])
-        search = str(check_output(command)).split('\n')
+        search_unprocessed = check_output(command).decode("UTF-8")
+        print("Search results: {}".format(search_unprocessed))
+        search = search_unprocessed.split('\n')
+        print("List of songs found in search: {}".format(search))
         max_songs = 5
         i = max_songs
         for song in search:
@@ -94,7 +97,7 @@ class MpdController:
 
     def make_mpc_command(self, *args):
         out = ['mpc', '-h', '192.168.0.100'] + args[0]
-	#out = ' '.join(map(str, out))
-	print(out)
-	return out
+        #out = ' '.join(map(str, out))
+        print("MPC command to run: {}".format(out))
+        return out
 

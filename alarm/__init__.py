@@ -1,1 +1,1 @@
-from tasks import alarm
+from .tasks import alarm

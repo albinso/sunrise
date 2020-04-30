@@ -24,7 +24,7 @@ def pause(request):
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def next(request):
-    mpd_instance.next()
+    mpd_instance.__next__()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def prev(request):

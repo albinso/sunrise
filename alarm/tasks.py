@@ -2,7 +2,7 @@ from albinso import celery_app
 import time
 from jukebox import mpd_instance
 import requests
-from lightconfig import url
+from .lightconfig import url
 
 
 @celery_app.task(bind=True)
