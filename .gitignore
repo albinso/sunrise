@@ -10,3 +10,4 @@ albinso/settings.py
 albinso/static
 albinso/admin
 celerybeat-schedule
+mopidy/mopidy.conf
