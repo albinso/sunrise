@@ -1,0 +1,55 @@
+  version: '2'
+    
+  services:
+    db:
+      image: postgres
+      environment:
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+
+    mopidy:
+      build: ./mopidy
+      command: mopidy
+      ports: 
+        - "6680:6680"
+        - "6600:6600"
+      devices:
+        - "/dev/snd:/dev/snd"
+
+    web:
+      build: .
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+        - .:/sunrise
+      ports:
+        - "8000:8000"
+      depends_on:
+        - db
+        - rabbitmq
+        - mopidy
+        - celery
+        - celery_beat
+    celery:
+      build: .
+      command: celery -A albinso worker -l info
+      volumes:
+        - .:/sunrise
+      depends_on:
+        - db
+        - rabbitmq
+    rabbitmq:
+      container_name: rabbitmq
+      hostname: rabbitmq
+      image: rabbitmq:latest
+      ports:
+        - "5672:5672"
+          #restart: on-failure
+    celery_beat:
+      build: .
+      command: celery -A albinso beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+      volumes:
+        - .:/sunrise
+      depends_on:
+        - db
+        - rabbitmq

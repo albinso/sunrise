@@ -96,7 +96,7 @@ class MpdController:
         return call(command)
 
     def make_mpc_command(self, *args):
-        out = ['mpc', '-h', '192.168.0.100'] + args[0]
+        out = ['mpc', '-h', 'mopidy'] + args[0]
         #out = ' '.join(map(str, out))
         print("MPC command to run: {}".format(out))
         return out
