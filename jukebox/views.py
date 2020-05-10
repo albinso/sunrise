@@ -14,7 +14,7 @@ def panel(request):
 
 def play(request):
     if mpd_instance.is_empty():
-        mpd_instance.search_song("journey")
+        mpd_instance.search("artist", "journey", 5)
     mpd_instance.play()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
@@ -41,5 +41,6 @@ def clear(request):
 
 @csrf_exempt
 def search(request):
-    mpd_instance.search_song(request.POST['Artist'])
+    print(request.POST.keys())
+    mpd_instance.search(request.POST['Type'], request.POST['Artist'], int(request.POST['NumSongs']))
     return HttpResponseRedirect(reverse('jukebox:panel'))
