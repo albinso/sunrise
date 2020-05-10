@@ -1,4 +1,4 @@
-from subprocess import call, Popen, STDOUT, PIPE, check_output
+from subprocess import call, Popen, STDOUT, PIPE, check_output, CalledProcessError
 import os
 import time
 import random
@@ -6,8 +6,7 @@ import math
 
 
 class MpdController:
-    def __init__(self, default_volume=15):
-        self.vol = default_volume
+    def __init__(self):
         #self.process = self.init_mopidy()
         #print(self.process.pid)
         self.wait_for_mopidy_startup()
@@ -22,23 +21,25 @@ class MpdController:
     def wait_for_mopidy_startup(self):
         code = 1
         while code != 0:
-            code = self.set_volume(self.vol)
+            code = 0
+            try:
+                self.get_volume()
+            except CalledProcessError:
+                code = 1
             time.sleep(1)
 
     def set_volume(self, vol):
-        self.vol = vol
         return call(self.make_mpc_command(['volume', str(vol)]))
 
     def raise_volume(self, change):
-        self.vol = min(self.vol + change, 100)
         return call(self.make_mpc_command(['volume', '+' + str(change)]))
 
     def lower_volume(self, change):
-        self.vol = max(self.vol - change, 0)
         return call(self.make_mpc_command(['volume', '-' + str(change)]))
 
     def get_volume(self):
-        return self.vol
+        proc = check_output(self.make_mpc_command(['volume']))
+        return proc
 
     def load_playlist(self, name):
         clear_command = self.make_mpc_command(['clear'])

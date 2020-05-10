@@ -1,0 +1,5 @@
+Mopidy-Iris==3.46.0
+Mopidy-MPD==3.0.0
+Mopidy-Podcast==3.0.0
+Mopidy-Scrobbler==2.0.0
+Mopidy-Spotify==4.0.0

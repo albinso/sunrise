@@ -27,6 +27,7 @@ RUN apt-get install -y libffi-dev \
                        python3-wheel \
                        libasound2-dev \
                        libspotify-dev \
+		       mopidy \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
