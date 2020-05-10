@@ -6,6 +6,16 @@
 <form action="{% url 'jukebox:search' %}" method="post">
 {% csrf_token %}
 <input type="" value="Artist" id="Artist", name="Artist">
+<input id="Type" value="Type" name="Type" list="types">
+<datalist id="types">
+	<option value="artist">
+	<option value="album">
+	<option value="title">
+	<option value="track">
+	<option value="name">
+	<option value="any">
+</datalist>
+<input type="number" value="NumSongs" name="NumSongs" id="NumSongs">
 <input type="submit" value="Load" />
 </form>
 

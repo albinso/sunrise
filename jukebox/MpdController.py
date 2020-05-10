@@ -74,13 +74,13 @@ class MpdController:
         playlist = self.get_playlists()
         return len(playlist) <= 4
 
-    def search_song(self, songname):
-        command = self.make_mpc_command(['search', 'Artist', songname])
+    def search(self, search_type, songname, num_results=1):
+        command = self.make_mpc_command(['search', search_type, songname])
         search_unprocessed = check_output(command).decode("UTF-8")
         print("Search results: {}".format(search_unprocessed))
         search = search_unprocessed.split('\n')
         print("List of songs found in search: {}".format(search))
-        max_songs = 5
+        max_songs = num_results
         i = max_songs
         for song in search:
             print(song)
