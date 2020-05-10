@@ -11,7 +11,7 @@ class MpdController:
         #print(self.process.pid)
         self.wait_for_mopidy_startup()
         self.playing = False
-        playlist = random.choice(self.get_playlists())
+        #playlist = random.choice(self.get_playlists())
         #self.load_playlist(playlist)
 
     def init_mopidy(self):
@@ -27,6 +27,7 @@ class MpdController:
             except CalledProcessError:
                 code = 1
             time.sleep(1)
+            return
 
     def set_volume(self, vol):
         return call(self.make_mpc_command(['volume', str(vol)]))

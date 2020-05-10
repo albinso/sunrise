@@ -12,8 +12,13 @@ def index(request):
 def panel(request):
     return render(request, 'jukebox/panel.html', {'form': PlaylistForm(), 'volume_form': VolumeForm()})
 
+def lolpanel(request):
+    return render(request, 'jukebox/panel.html', {'form': PlaylistForm(), 'volume_form': VolumeForm(), 'lolscript': '/scripts/js/unauth.js'})
+    
 
 def play(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     if mpd_instance.is_empty():
         mpd_instance.search("artist", "journey", 5)
     mpd_instance.play()
@@ -21,18 +26,26 @@ def play(request):
 
 
 def pause(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     mpd_instance.pause()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def next(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     mpd_instance.__next__()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def prev(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     mpd_instance.prev()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def set_volume(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     form = VolumeForm(request.POST)
     if not form.is_valid():
         return HttpResponseRedirect(reverse('jukebox:panel'))
@@ -40,10 +53,14 @@ def set_volume(request):
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def clear(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     mpd_instance.clear()
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 def load_playlist(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     form = PlaylistForm(request.POST)
     if not form.is_valid():
         return HttpResponseRedirect(reverse('jukebox:panel'))
@@ -53,6 +70,8 @@ def load_playlist(request):
 
 @csrf_exempt
 def search(request):
+    if not request.user.is_authenticated:
+        return lolpanel(request)
     print(request.POST.keys())
     mpd_instance.search(request.POST['Type'], request.POST['Artist'], int(request.POST['NumSongs']))
     return HttpResponseRedirect(reverse('jukebox:panel'))
