@@ -39,5 +39,14 @@ place(o, 70, 70, "https://toppng.com/uploads/preview/capital-letter-o-1155274010
 await new Promise(r => setTimeout(r, 2000));
 place(u2, 70, 70, "https://lh3.googleusercontent.com/proxy/ggkFyRamtD60PZfrFkNXv160gBAJt-9twQmrBFUKvcVO-Zp8xeJkWcJ8nrJ4ta4cyCHOSzxHuuSvpnKVnXZYQb0E8hck9kAAe5mF_zTIoTnBvoE7Gek2e_JkQA");
 }
-
+var count = 1;
+var audio = new Audio('/static/audio/fuku.wav');
+audio.addEventListener('ended', function(){
+	   this.currentTime = 0;
+	   if(count <= 3){
+		         this.play();
+		      }
+	   count++;
+}, false);
+audio.play();
 doStuff();
