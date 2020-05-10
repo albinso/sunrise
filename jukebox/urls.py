@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'setvol', views.set_volume, name='setvolume'),
     url(r'search', views.search, name='search'),
     url(r'clear', views.clear, name='clear'),
+    url(r'load', views.load_playlist, name='load'),
 ]

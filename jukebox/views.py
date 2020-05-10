@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from . import mpd_instance
+from .forms import PlaylistForm
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
@@ -9,7 +10,7 @@ def index(request):
 
 
 def panel(request):
-    return render(request, 'jukebox/panel.html')
+    return render(request, 'jukebox/panel.html', {'form': PlaylistForm()})
 
 
 def play(request):
@@ -37,6 +38,14 @@ def set_volume(request):
 
 def clear(request):
     mpd_instance.clear()
+    return HttpResponseRedirect(reverse('jukebox:panel'))
+
+def load_playlist(request):
+    form = PlaylistForm(request.POST)
+    if not form.is_valid():
+        return HttpResponseRedirect(reverse('jukebox:panel'))
+    print(form.cleaned_data)
+    mpd_instance.load_playlist(form.cleaned_data["playlist"])
     return HttpResponseRedirect(reverse('jukebox:panel'))
 
 @csrf_exempt

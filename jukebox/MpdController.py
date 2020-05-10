@@ -45,7 +45,9 @@ class MpdController:
         clear_command = self.make_mpc_command(['clear'])
         call(clear_command)
         command = self.make_mpc_command(['load', name])
-        return call(command)
+        output = call(command)
+        self.play()
+        return output
 
     def play(self):
         self.playing = True
@@ -65,13 +67,19 @@ class MpdController:
         command = self.make_mpc_command(['prev'])
         return call(command)
 
+    
     def get_playlists(self):
         command = self.make_mpc_command(['lsplaylists'])
-        output = str(check_output(command))
+        output = check_output(command).decode("utf-8")
+        return output.split('\n')
+
+    def get_loaded_playlist(self):
+        command = self.make_mpc_command(['playlist'])
+        output = check_output(command).decode("utf-8")
         return output.split('\n')
 
     def is_empty(self):
-        playlist = self.get_playlists()
+        playlist = self.get_loaded_playlist()
         return len(playlist) <= 4
 
     def search(self, search_type, songname, num_results=1):
