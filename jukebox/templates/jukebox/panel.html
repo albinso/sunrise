@@ -25,6 +25,12 @@
 	<input type="submit" value="Submit">
 </form>
 
+<form action="{% url 'jukebox:setvolume' %}" method="post">
+	{% csrf_token %}
+	{{ volume_form }}
+	<input type=submit value="Submit">
+</form>
+
 <form action="{% url 'jukebox:pause' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Pause" />
@@ -32,6 +38,6 @@
 
 <form action="{% url 'jukebox:play' %}" method="post">
 {% csrf_token %}
-<input type="submit" value="Play" />:w
+<input type="submit" value="Play" />
 
 </form>

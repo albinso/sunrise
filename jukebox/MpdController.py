@@ -71,7 +71,7 @@ class MpdController:
     def get_playlists(self):
         command = self.make_mpc_command(['lsplaylists'])
         output = check_output(command).decode("utf-8")
-        return output.split('\n')
+        return sorted(output.split('\n'))
 
     def get_loaded_playlist(self):
         command = self.make_mpc_command(['playlist'])

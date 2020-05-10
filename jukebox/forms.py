@@ -9,4 +9,7 @@ def list_to_tuples(lst):
 
 
 class PlaylistForm(forms.Form):
-    playlist = forms.CharField(label="Select playlist: ", widget=forms.Select(choices=list_to_tuples(mpd_instance.get_playlists())))
+    playlist = forms.CharField(widget=forms.Select(choices=list_to_tuples(mpd_instance.get_playlists())))
+
+class VolumeForm(forms.Form):
+    volume = forms.IntegerField(min_value=0, max_value=25)
