@@ -27,17 +27,17 @@ function place(element, x, y, src) {
 	  document.getElementById("parent").appendChild(element);
 }
 async function doStuff() {
-place(f, 10, 10, "https://lh3.googleusercontent.com/proxy/6dwpJLuOHxw9x5yEY8GwZSq_veXnco3woM8eIVs94ik9ZDFcf-THQOFM6mkgHMctWH_HRFLDDwsUeg-H4ShkmKD9A1v1KLKpxpnnctEgnJzIUY4");
+place(f, 10, 10, "/static/img/f.png");
 await new Promise(r => setTimeout(r, 2000));
-place(u, 70, 10, "https://lh3.googleusercontent.com/proxy/ggkFyRamtD60PZfrFkNXv160gBAJt-9twQmrBFUKvcVO-Zp8xeJkWcJ8nrJ4ta4cyCHOSzxHuuSvpnKVnXZYQb0E8hck9kAAe5mF_zTIoTnBvoE7Gek2e_JkQA");
+place(u, 70, 10, "/static/img/u.png");
 await new Promise(r => setTimeout(r, 2000));
-place(k, 120, 10, "http://assets.stickpng.com/images/5a01bb577ca233f48ba627b9.png");
+place(k, 70, 10, "/static/img/k.png");
 await new Promise(r => setTimeout(r, 2000));
-place(y, 70, 70, "https://i.dlpng.com/static/png/1585721-letter-y-png-download-image-y-png-628_800_preview.png");
+place(y, 70, 10, "/static/img/y.png");
 await new Promise(r => setTimeout(r, 2000));
-place(o, 70, 70, "https://toppng.com/uploads/preview/capital-letter-o-11552740101fhmfngpaay.png");
+place(o, 70, 10, "/static/img/o.png");
 await new Promise(r => setTimeout(r, 2000));
-place(u2, 70, 70, "https://lh3.googleusercontent.com/proxy/ggkFyRamtD60PZfrFkNXv160gBAJt-9twQmrBFUKvcVO-Zp8xeJkWcJ8nrJ4ta4cyCHOSzxHuuSvpnKVnXZYQb0E8hck9kAAe5mF_zTIoTnBvoE7Gek2e_JkQA");
+place(u2, 70, 10, "/static/img/u.png");
 }
 var count = 1;
 var audio = new Audio('/static/audio/fuku.wav');

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from . import mpd_instance
-from .forms import PlaylistForm, VolumeForm
+from .forms import PlaylistForm, VolumeForm, FakePlaylistForm
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
@@ -10,10 +10,13 @@ def index(request):
 
 
 def panel(request):
-    return render(request, 'jukebox/panel.html', {'form': PlaylistForm(), 'volume_form': VolumeForm()})
+    form = PlaylistForm()
+    if not request.user.is_authenticated:
+        form = FakePlaylistForm()
+    return render(request, 'jukebox/panel.html', {'form': form, 'volume_form': VolumeForm()})
 
 def lolpanel(request):
-    return render(request, 'jukebox/panel.html', {'form': PlaylistForm(), 'volume_form': VolumeForm(), 'lolscript': '/scripts/js/unauth.js'})
+    return render(request, 'jukebox/panel.html', {'form': FakePlaylistForm(), 'volume_form': VolumeForm(), 'lolscript': '/scripts/js/unauth.js'})
     
 
 def play(request):

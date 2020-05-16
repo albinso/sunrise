@@ -31,7 +31,7 @@
         - celery
         - celery_beat
     celery:
-      build: .
+      build: ./celery
       command: celery -A albinso worker -l info
       volumes:
         - .:/sunrise
@@ -46,7 +46,7 @@
         - "5672:5672"
           #restart: on-failure
     celery_beat:
-      build: .
+      build: ./celery
       command: celery -A albinso beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
       volumes:
         - .:/sunrise
